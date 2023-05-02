@@ -17,7 +17,7 @@ apiRouter.get("/", async (req, res) => {
     const ipInfo = response.data;
     client.set(ipInfo, JSON.stringify(ipInfo), "EX", 6 * 60);
     console.log(client.get(ipInfo));
-    res.send(ipInfo)
+    res.send(ipInfo.city)
     // await CityModel.findByIdAndUpdate(
     //   { userID: req.body.userID },
     //   { userID: req.body.userID, $push: { previous_searches: city } },
