@@ -8,7 +8,7 @@ const apiRouter = express.Router();
 apiRouter.get("/", async (req, res) => {
   var ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress || null;
   console.log(req.ip);
-  res.send(ip);
+ // res.send(ip);
   try {
     const is_ip_in_cache = await client.get(ip);
     // console.log(city);
@@ -17,7 +17,7 @@ apiRouter.get("/", async (req, res) => {
     const ipInfo = response.data;
     client.set(ipInfo, JSON.stringify(ipInfo), "EX", 6 * 60);
     console.log(client.get(ipInfo));
-
+    res.send(ipInfo)
     // await CityModel.findByIdAndUpdate(
     //   { userID: req.body.userID },
     //   { userID: req.body.userID, $push: { previous_searches: city } },
